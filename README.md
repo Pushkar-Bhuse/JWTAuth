@@ -12,20 +12,20 @@ In JWTAuth, whenever a user logs in, JWT authentication provides the user with a
 
 ## Installation Details:
 For Django, install the following packages need to be installed:
-*django
-*djangorestframework
-*djangorestframework-jwt
-*django-cors-headers 
+* django
+* djangorestframework
+* djangorestframework-jwt
+* django-cors-headers 
 
 For Bootstrap:
-*npm install --save bootstrap
+* npm install --save bootstrap
 
 Instead of doing the above metioned steps, the user can reactivate the python virtual environment to inclue the printaled dependencies.
 
 ## Instructions to run:
-1.Start the Django server using python manage.py runserver 
-2.Start the React development server using npm start. 
-3.Signup or login on the page using the endpoints given below.
+* Start the Django server using python manage.py runserver 
+* Start the React development server using npm start. 
+* Signup or login on the page using the endpoints given below.
 
 
 If successfully run, it'll greet you with your username on the page.
