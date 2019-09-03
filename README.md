@@ -12,13 +12,15 @@ In JWTAuth, whenever a user logs in, JWT authentication provides the user with a
 
 ## Installation Details:
 For Django, install the following packages need to be installed:
-django
-djangorestframework
-djangorestframework-jwt
-django-cors-headers 
+*django
+*djangorestframework
+*djangorestframework-jwt
+*django-cors-headers 
 
 For Bootstrap:
-npm install --save bootstrap
+*npm install --save bootstrap
+
+Instead of doing the above metioned steps, the user can reactivate the python virtual environment to inclue the printaled dependencies.
 
 ## Instructions to run:
 1.Start the Django server using python manage.py runserver 
