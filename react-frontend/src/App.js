@@ -48,10 +48,15 @@ class App extends Component {
       },
       body: JSON.stringify(data)
     })
-      .then(res => res.json())
+      .then(res => {
+        if(res.status === 200){
+          return res.json();
+        }
+        return null;
+      })
       .then(json => {
-        console.log(json)
-        if(json.user.username){
+        // console.log(json)
+        if(json){
           // console.log("Im here");
           localStorage.setItem('token', json.token);
           this.setState({
@@ -94,7 +99,7 @@ class App extends Component {
 
   handle_logout = () => {
     localStorage.removeItem('token');
-    this.setState({ logged_in: false, username: '' });
+    this.setState({ logged_in: false, username: '', displayed_form:"login" });
   };
 
   display_form = form => {
@@ -125,6 +130,7 @@ class App extends Component {
             logged_in={this.state.logged_in}
             display_form={this.display_form}
             handle_logout={this.handle_logout}
+            active={this.state.displayed_form}
           />
           <div className="row">
           <div className="col-sm-3"></div>

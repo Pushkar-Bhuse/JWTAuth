@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Nav(props) {
-  const display_form = props.display_form;
   const logged_out_nav = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">JWTAuth</a>
@@ -11,10 +10,10 @@ function Nav(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className={(display_form === 'login') ? 'nav-item active':'nav-item'} onClick={() => props.display_form('login')}>
+                    <li className={(props.active === 'login') ? 'nav-item active':'nav-item'} onClick={() => props.display_form('login')}>
                         <a  className="nav-link" href="#">Login</a>
                     </li>
-                    <li className={(display_form === 'signup') ? 'nav-item active':'nav-item'} onClick={() => props.display_form('signup')}>
+                    <li className={(props.active === 'signup') ? 'nav-item active':'nav-item'} onClick={() => props.display_form('signup')}>
                         <a className="nav-link" href="#">SignUp</a>
                     </li>
                 </ul>

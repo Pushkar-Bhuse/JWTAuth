@@ -4,14 +4,6 @@ import PropTypes from 'prop-types';
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
-
-        if(props.clear_input === true){
-            this.setState({
-                username:"",
-                password:""
-            })
-        }
-
         this.state = {
             username: '',
             password: ''
@@ -30,17 +22,17 @@ class LoginForm extends React.Component {
   };
 
   handle_form_login = (e, state) =>{
+      e.preventDefault();
       this.setState({
           username:"",
           password:""
       })
       this.props.handle_login(e,state)
-      e.preventDefault();
   }
 
   render() {
     return (
-    <form onSubmit={e => this.props.handle_login(e, this.state)}>
+    <form onSubmit={e => this.handle_form_login(e, this.state)}>
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <input type="text" name="username" value={this.state.username} onChange={this.handle_change} className="form-control" placeholder="Enter Username"/>
