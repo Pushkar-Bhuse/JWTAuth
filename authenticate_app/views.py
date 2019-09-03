@@ -13,8 +13,10 @@ def current_user(request):
     """
     Determine the current user by their token, and return their data
     """
+    # import pdb; pdb.set_trace()
 
     serializer = UserSerializer(request.user)
+    # print("Hello Python")
     return Response(serializer.data)
 
 

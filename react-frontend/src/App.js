@@ -8,13 +8,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayed_form: 'signup',
+      displayed_form: 'login',
       logged_in: localStorage.getItem('token') ? true : false,
-      username: ''
+      username: '',
     };
   }
 
   componentDidMount() {
+    // console.log(localStorage.getItem('token'))
     if (this.state.logged_in) {
       fetch('http://localhost:8000/authenticate/current_user/', {
         headers: {
@@ -23,7 +24,17 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(json => {
-          this.setState({ username: json.username });
+          if(json.username){
+            this.setState({
+              username: json.username,
+              displayed_form: null
+             });
+          }
+          else{
+            this.setState({
+              display_form:"login"
+            })
+          }
         });
     }
   }
@@ -39,12 +50,24 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        localStorage.setItem('token', json.token);
-        this.setState({
-          logged_in: true,
-          displayed_form: '',
-          username: json.user.username
-        });
+        console.log(json)
+        if(json.user.username){
+          // console.log("Im here");
+          localStorage.setItem('token', json.token);
+          this.setState({
+            logged_in: true,
+            displayed_form: null,
+            username: json.user.username
+          });
+        }
+        else{
+          alert("Entered username or password is incorrect");
+          this.setState({
+            username: "",
+            logged_in: false,
+            displayed_form: 'login',
+          })
+        }
       });
   };
 
@@ -91,6 +114,7 @@ class App extends Component {
         break;
       default:
         form = null;
+        break;
     }
 
     return (
@@ -103,7 +127,7 @@ class App extends Component {
             handle_logout={this.handle_logout}
           />
           <div className="row">
-          <div class="col-sm-3"></div>
+          <div className="col-sm-3"></div>
           <div className="col-sm-6">
           {form}
           </div>

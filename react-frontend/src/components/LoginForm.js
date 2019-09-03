@@ -2,10 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class LoginForm extends React.Component {
-  state = {
-    username: '',
-    password: ''
-  };
+    constructor(props) {
+        super(props)
+
+        if(props.clear_input === true){
+            this.setState({
+                username:"",
+                password:""
+            })
+        }
+
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+
 
   handle_change = e => {
     const name = e.target.name;
@@ -17,16 +29,25 @@ class LoginForm extends React.Component {
     });
   };
 
+  handle_form_login = (e, state) =>{
+      this.setState({
+          username:"",
+          password:""
+      })
+      this.props.handle_login(e,state)
+      e.preventDefault();
+  }
+
   render() {
     return (
     <form onSubmit={e => this.props.handle_login(e, this.state)}>
       <div className="form-group">
         <label htmlFor="username">Username</label>
-        <input type="text" name="username" value={this.state.username} onChange={this.handle_change} class="form-control" placeholder="Enter Username"/>
+        <input type="text" name="username" value={this.state.username} onChange={this.handle_change} className="form-control" placeholder="Enter Username"/>
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" value={this.state.password} onChange={this.handle_change} class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        <input type="password" name="password" value={this.state.password} onChange={this.handle_change} className="form-control" id="exampleInputPassword1" placeholder="Password"/>
       </div>
       <button type="submit" className="btn btn-primary">Login</button>
     </form>
