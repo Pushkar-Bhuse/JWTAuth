@@ -20,7 +20,6 @@ For Django, install the following packages need to be installed:
 For Bootstrap:
 * npm install --save bootstrap
 
-Instead of doing the above metioned steps, the user can reactivate the python virtual environment to inclue the printaled dependencies.
 
 ## Instructions to run:
 * Start the Django server using python manage.py runserver 
